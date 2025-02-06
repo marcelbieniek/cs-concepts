@@ -55,6 +55,38 @@ void missingNumber()
     }
 }
 
+// https://cses.fi/problemset/task/1094
+void increasingArray()
+{
+    std::size_t size;
+    std::cin >> size;
+
+    std::vector<int> input{};
+    for (std::size_t i = 0; i < size; ++i)
+    {
+        int num;
+        std::cin >> num;
+        input.push_back(num);
+    }
+
+    int minMoves{};
+    for (auto it = input.begin() + 1; it < input.end(); ++it)
+    {
+        auto prevIt = std::prev(it);
+
+        int currentEl = *it;
+        int prevEl = *prevIt;
+        if (currentEl < prevEl)
+        {
+            int movesNeeded = prevEl - currentEl;
+            minMoves += movesNeeded;
+            *it += movesNeeded;
+        }
+    }
+
+    std::cout << minMoves << std::endl;
+}
+
 int main()
 {
     // int n;
@@ -62,6 +94,8 @@ int main()
     // weirdAlgorithm(n);
 
     // missingNumber();
+
+    // increasingArray();
 
     return 0;
 }
