@@ -106,7 +106,6 @@ int repetitions(const std::string& sequence, std::string possibleChars)
         while (*it == currentLetter)
         {
             repLen++;
-
             it = std::next(it);
         }
 
