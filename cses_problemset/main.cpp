@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 // https://cses.fi/problemset/task/1068/
 void weirdAlgorithm(int n)
@@ -87,6 +88,38 @@ void increasingArray()
     std::cout << minMoves << std::endl;
 }
 
+// https://cses.fi/problemset/task/1069
+int repetitions(const std::string& sequence, std::string possibleChars)
+{
+    if (possibleChars.empty())
+    {
+        return 0;
+    }
+
+    char currentLetter = possibleChars[0];
+    possibleChars.erase(0, 1);
+
+    int maxRepLen = 0;
+    for (auto it = sequence.begin(); it < sequence.end(); ++it)
+    {
+        int repLen = 0;
+        while (*it == currentLetter)
+        {
+            repLen++;
+
+            it = std::next(it);
+        }
+
+        if (repLen > maxRepLen)
+        {
+            maxRepLen = repLen;
+        }
+    }
+
+    int res = repetitions(sequence, possibleChars);
+    return res > maxRepLen ? res : maxRepLen;
+}
+
 int main()
 {
     // int n;
@@ -96,6 +129,8 @@ int main()
     // missingNumber();
 
     // increasingArray();
+
+    // std::cout << repetitions("ATTCGGGA", "ACGT") << std::endl;
 
     return 0;
 }
